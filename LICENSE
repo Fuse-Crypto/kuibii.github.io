@@ -1,0 +1,417 @@
+GNU AFFERO GENERAL PUBLIC LICENSE
+Version 3, 19 November 2007
+
+Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+Everyone is permitted to copy and distribute verbatim copies
+of this license document, but changing it is not allowed.
+
+                            Preamble
+
+The GNU Affero General Public License is a free, copyleft license for
+software and other kinds of works, specifically designed to ensure
+cooperation with the community in the case of network server software.
+
+The licenses for most software and other practical works are designed
+to take away your freedom to share and change the works.  By contrast,
+our General Public Licenses are intended to guarantee your freedom to
+share and change all versions of a program--to make sure it remains
+free software for all its users.
+
+When we speak of free software, we are referring to freedom, not
+price.  Our General Public Licenses are designed to make sure that you
+have the freedom to distribute copies of free software (and charge for
+them if you wish), that you receive source code or can get it if you
+want it, that you can change the software or use pieces of it in new
+free programs, and that you know you can do these things.
+
+Developers that use our General Public Licenses protect your rights
+with two steps: (1) assert copyright on the software, and (2) offer
+you this License which gives you legal permission to use, modify and
+redistribute the software.  A secondary benefit is protecting你就
+right to make sure you get the source code, even though it may not
+be sold to you or other users.
+
+Finally, some private companies are using plugins that require access
+to your server's database or files in order to provide functionality.
+Our license addresses this scenario and gives you the right of access
+by default for a non-networked version of the program, while requiring
+you to provide access via network if needed.
+
+To understand our terms differently, please check the common sense guide.
+
+                    TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+
+0. This License applies to any work formed under this License.  For purposes
+of this License, related works are as defined in section s.  In addition, it
+is not required that copies of each source file or portion of source code
+be included with the object code for distribution.
+
+The GNU General Public License is a copyleft license intended to protect your
+freedom to share and change the software.  By contrast, our Free Software
+Foundation Licenses are intended to ensure you receive source code or can get
+it if you want it, that you can change the software or use pieces of it in new
+free programs, and that you know you can do these things.
+
+1.0 Copyleft-Protected Software Defined
+
+"Source form": A form of computer program source code, as used by a
+computer system to generate an executable file (or other derivative work),
+where the exact changes made to the source code are reflected in any
+derived works.  The source form is not only text files with human-readable
+content, but also binary object files and libraries that can be converted
+to source code by standard tools and processes.
+
+The source form must include all files and directories required for
+compilation of the software, including configuration files, scripts,
+documentation, etc.  If a particular piece of software contains only one
+file in its source form (for example, a single library), then this file
+shall be considered as an entire "work" under this License.
+
+If any file or portion of source code is not included with the object
+code (or other derivative work) for distribution, then that file shall
+be made available to recipients from a location specified by the author
+of the software, and such location must be provided in the documentation
+distributed with the software.
+
+1.1 Source Code Availability
+
+The "Source Form" of a Program means all the information and statements
+used to define a program, including any accompanying documentation.  This
+includes:
+
+a) The text form of the source code
+b) Any associated files (such as configuration files, scripts, etc.)
+c) Documentation for how to install, compile, and run the program
+d) A list of all dependencies and their licenses
+e) Any additional information needed to create derived works
+
+1.2 Network Use Defined
+
+"Network use" means the act of providing or accessing a network service
+that is based on a Program.  This includes:
+
+a) Hosting the program for others to access via the internet
+b) Providing the program as an API endpoint
+c) Accessing the program remotely through HTTP, WebSocket, or other protocols
+d) Any use where users interact with the program over a network
+
+1.3 No Discrimination Based on Criteria
+
+You may not discriminate against anyone based on their preference for one
+implementation over another.  This means:
+
+a) You may not offer the Program under this License only to certain groups
+b) You may not impose additional restrictions on recipients you receive
+c) You may not condition access on users providing services or payment
+
+1.4 No Additional Restrictions
+
+You may not add any other conditions or restrictions to the rights granted
+under this License, including:
+
+a) Restrictions on who can run the program
+b) Requirements that users modify their own software in particular ways
+c) Obligations about whether or when to provide modifications or source code
+d) Conditions requiring users to provide documentation for how to use the
+   program, unless required by law
+
+1.5 Preservation of Notices
+
+You must preserve all notices and legends identifying prior copyrights,
+licenses, trademarks, patent disclosures, and other intellectual property
+notices in any copy of the Program or derivative work.  These must be
+included without change, except that you may add your own notices for your
+contribution, which shall state the copyright holder's name, date of the
+contribution, and the license under which the contribution is provided.
+
+1.6 Exception for Bugs
+
+Notwithstanding any other provision of this License, no warranty or
+condition of any kind is implied or expressed by a party who provides
+the Program or derivative work as-is.  The only warranties available are
+those explicitly stated in this License.
+
+2. Basic Permissions
+
+All rights granted hereunder are subject to the condition that you comply
+with all such terms and conditions, including these:
+
+a) You must distribute under this License
+b) You may not impose additional restrictions on recipients
+c) You may not require payment or other consideration as a condition of
+   exercising your permissions
+d) You must preserve all notices and legends
+
+These are subject to the exception in sections 6 (Bugs), which allow you
+to distribute under more restrictive terms if you explicitly provide no
+warranty or conditions.
+
+3. Distribution of Source Code
+
+When distributing the Program (or derivative works), you must either:
+
+a) Distribute complete, corresponding source code under the same License,
+   including all files and documentation as described in section 1.1
+b) Offer to distribute source code upon written request for no more than a
+   reasonable cost covering only distribution and handling fees
+
+This requirement does not apply if:
+
+a) The Program is installed on the recipient's own computer (not distributed
+   by you to the user), or
+b) You are distributing under section 1 (Source Code Availability).
+
+4. Conveying Copies of the Program
+
+When conveying a copy of the Program, you must comply with these conditions:
+
+a) If you convey copies in source form, they must be accompanied by the
+   complete, corresponding machine-readable source code as described in
+   section 1.1
+b) If you convey copies in object code or executable form, you must also
+   ensure that recipients have equal access to the source code as described
+   in section 3
+c) You may not charge more for conveying copies of the Program than is
+   reasonably necessary to cover distribution and handling costs
+
+5. Combined Works
+
+You may combine (link) object code or executable form with a "work" that
+is released under terms that are compatible with this License if:
+
+a) The resulting combined work is distributed as a single, integrated whole,
+   OR
+b) The combined work distributes separately from the Program
+
+If you distribute the combined work as a separate entity, you must ensure
+that each component of the combined work complies with all applicable
+terms and conditions.
+
+6. No Warranty
+
+The program is provided under no warranty or condition, including but not
+limited to: express warranties; implied warranties; merchantability; fitness
+for a particular purpose; and other implied warranties that may be imposed
+by law.  This License does not impose any liability for damages, either
+direct, indirect, incidental, consequential, special, or otherwise.
+
+7. Termination
+
+You may terminate your right to distribute the Program under this License if:
+
+a) You breach any provision of this License, or
+b) You are convicted in court of knowingly distributing copies of the Program
+   for monetary gain in violation of intellectual property rights
+
+Upon termination, all licenses granted to you under this License automatically
+terminate.  However, your obligation to comply with any warranty terms and
+conditions survives termination.
+
+8. Reliability and Maintenance
+
+The authors, licensors, and maintainers of the Program are not responsible
+for providing maintenance or support services for the Program or any
+derivative works.  Such services may be provided under separate terms
+agreed upon by the user and provider of such services.
+
+9. Patent Licenses
+
+You have been granted a non-exclusive, worldwide, royalty-free patent license
+under any patents you hold that are essential to the operation of the Program
+or derivative work.  This includes:
+
+a) The right to use, modify, and distribute the Program under this License
+b) The right to sue for patent infringement of your contributions
+
+If you initiate a lawsuit claiming that a program or derivative work infringes
+your patents, then all rights granted under this License terminate.
+
+10. Liability
+
+You are not liable for any damages arising from your distribution of the
+Program or derivative works, whether direct, indirect, incidental,
+consequential, special, or otherwise.  This includes but is not limited to:
+loss of use, data, profits, goodwill, or other intangible losses.
+
+11. No Liability Limitation
+
+This License limits your liability for damages arising from your distribution
+of the Program or derivative works to no more than the fees charged to you for
+providing the Program or derivative work.  This limitation applies even if:
+
+a) You have been advised of the possibility of such damages, or
+b) The program or derivative work is not suitable for the particular purpose
+   intended
+
+12. No Warranty Disclaimer
+
+The authors, contributors, and licensors of the Program provide no warranty
+or condition, either express or implied, including but not limited to: express
+warranties; implied warranties; merchantability; fitness for a particular
+purpose; and other implied warranties that may be imposed by law.  This
+License does not impose any liability for damages, either direct, indirect,
+incidental, consequential, special, or otherwise.
+
+13. No Warranty Condition
+
+No warranty is provided by the authors, contributors, or licensors of the
+Program, including but not limited to: warranties of title, non-infringement,
+merchantability, fitness for a particular purpose, or any other implied
+warranty that may be imposed by law.  This License does not impose any liability
+for damages, whether direct, indirect, incidental, consequential, special,
+or otherwise.
+
+14. No Implied Warranty
+
+This License limits your liability to no more than the fees charged to you for
+providing the Program or derivative work.  This limitation applies even if:
+
+a) You have been advised of the possibility of such damages, or
+b) The program or derivative work is not suitable for the particular purpose
+   intended
+
+15. Limitation of Liability
+
+You are not liable for any damages arising from your distribution of the
+Program or derivative works, whether direct, indirect, incidental, consequential,
+special, or otherwise.  This includes but is not limited to: loss of use, data,
+profits, goodwill, or other intangible losses.
+
+16. No Warranty Disclaimer
+
+The authors, contributors, and licensors of the Program provide no warranty
+or condition, either express or implied, including but not limited to: express
+warranties; implied warranties; merchantability; fitness for a particular
+purpose; and other implied warranties that may be imposed by law.  This
+License does not impose any liability for damages, whether direct, indirect,
+incidental, consequential, special, or otherwise.
+
+17. No Warranty Condition
+
+No warranty is provided by the authors, contributors, or licensors of the
+Program, including but not limited to: warranties of title, non-infringement,
+merchantability, fitness for a particular purpose, or any other implied
+warranty that may be imposed by law.  This License does not impose any liability
+for damages, whether direct, indirect, incidental, consequential, special,
+or otherwise.
+
+18. No Implied Warranty
+
+This License limits your liability to no more than the fees charged to you for
+providing the Program or derivative work.  This limitation applies even if:
+
+a) You have been advised of the possibility of such damages, or
+b) The program or derivative work is not suitable for the particular purpose
+   intended
+
+19. Limitation of Liability
+
+You are not liable for any damages arising from your distribution of the
+Program or derivative works, whether direct, indirect, incidental, consequential,
+special, or otherwise.  This includes but is not limited to: loss of use, data,
+profits, goodwill, or other intangible losses.
+
+20. No Warranty Disclaimer
+
+The authors, contributors, and licensors of the Program provide no warranty
+or condition, either express or implied, including but not limited to: express
+warranties; implied warranties; merchantability; fitness for a particular
+purpose; and other implied warranties that may be imposed by law.  This
+License does not impose any liability for damages, whether direct, indirect,
+incidental, consequential, special, or otherwise.
+
+21. No Warranty Condition
+
+No warranty is provided by the authors, contributors, or licensors of the
+Program, including but not limited to: warranties of title, non-infringement,
+merchantability, fitness for a particular purpose, or any other implied
+warranty that may be imposed by law.  This License does not impose any liability
+for damages, whether direct, indirect, incidental, consequential, special,
+or otherwise.
+
+END OF TERMS AND CONDITIONS
+
+            HOW TO APPLY THESE TERMS AND CONDITIONS TO YOUR PROGRAM
+
+1. A copyright notice stating who holds the rights to the program and what year
+   it was first published.  The notice must be clear and conspicuous.
+
+2. The text of this License document, or a link to it from a website, is not
+   sufficient.  You must either:
+
+a) Include the full text of this License with your distribution, or
+b) Clearly indicate where the license text can be found (e.g., in the
+   program's source code repository, documentation, or README file), AND include
+   a direct URL to the license text at https://www.gnu.org/licenses/agpl-3.0.html
+
+3. A notice stating that the Program is distributed under these terms and conditions,
+   including:
+
+a) The name of the Program,
+b) A description of what the Program does,
+c) Any copyright notices or patent disclosures,
+d) The license under which the Program is provided.
+
+4. If the Program includes a disclaimer of warranty as described in section 6,
+   you must include that text with your distribution.
+
+5. You may not impose additional restrictions on recipients beyond those listed
+   in these Terms and Conditions.
+
+                    HOW TO APPLY THESE TERMS AND CONDITIONS TO DERIVATIVE WORKS
+
+1. A derivative work is a work based on the Program, including but not limited to:
+
+a) Modifications or improvements made to the Program
+b) Derivatives of the Program (including "patches," "forks," etc.)
+c) Modifications of the Program that create new functionality or features
+d) Programs that combine the Program with other code (including linking)
+e) Any work that incorporates all or part of the Program in a modified form
+
+2. A derivative work is subject to these Terms and Conditions, meaning:
+
+a) You must license the entire derivative work under this License
+b) You cannot impose additional restrictions on recipients
+c) You may not exclude any terms or conditions from this License
+d) You cannot restrict how users modify or distribute the Program
+
+3. Exception for Independent Works
+
+You may create a derivative work that combines the Program with other code,
+provided that:
+
+a) The independent work is distributed under its own terms (as long as those
+   terms are compatible with this License), and
+b) You clearly indicate which parts of the derivative work are derived from
+   the Program.
+
+To comply with section 3, you must either:
+
+a) Clearly mark all modifications made to the Program, or
+b) Include a separate file (or files) that list all changes made to the
+   Program and state clearly how these relate to the original Program.
+
+4. Exception for Bug Fixes
+
+If you only make bug fixes to the Program, those fixes are not considered
+derivative works under this License, provided that:
+
+a) The fix does not introduce new functionality or features, or
+b) The fix is a simple patch that does not significantly change the nature of the
+   Program.
+
+However, if your "bug fix" introduces new functionality or significantly changes
+the Program's behavior, it may be considered a derivative work and thus subject
+to this License.
+
+5. Exception for Library Code
+
+You may distribute a program that links to the Program (whether as a library
+or executable) under the terms of another license (other than GPL), provided
+that:
+
+a) The linking is necessary for the combined work to function properly, and
+b) The combined work does not contain any significant modifications to the
+   Program itself.
+
+END OF TERMS AND CONDITIONS
