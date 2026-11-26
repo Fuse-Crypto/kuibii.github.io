@@ -1,9 +1,10 @@
 import { Field, Help, useExperience } from "@/components/experience";
 import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useAccount } from "wagmi";
 import { getPublicCampaign, registerRecipient } from "@/lib/campaigns.functions";
 import { CHAINS } from "@/lib/distribution";
 import { describe } from "@/lib/conditions";
@@ -22,11 +23,18 @@ export const Route = createFileRoute("/c/$id/register")({
 
 function RegisterPage() {
   const { text, kid } = useExperience();
+  const { address, isConnected } = useAccount();
   const c = Route.useLoaderData();
   const { id } = Route.useParams();
   const register = useServerFn(registerRecipient);
   const [f, setF] = useState({ name: "", email: "", wallet: "", code: "" });
   const [state, setState] = useState<{ done?: boolean; error?: string; busy?: boolean }>({});
+
+  useEffect(() => {
+    if (isConnected && address && c?.chain !== "solana") {
+      setF((current) => current.wallet ? current : { ...current, wallet: address });
+    }
+  }, [address, isConnected, c?.chain]);
 
   if (!c) return <p className="p-10 text-center text-muted-foreground">This distribution doesn't exist.</p>;
   const chain = CHAINS.find((x) => x.id === c.chain)?.label ?? c.chain;

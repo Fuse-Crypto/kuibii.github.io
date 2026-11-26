@@ -1348,6 +1348,7 @@
   "Waiting timer (months)": "Temporizador de espera (meses)",
   "wallet": "cartera",
   "Wallet": "Monedero",
+  "Connected wallet": "Monedero conectado",
   "Wallet address": "Dirección del monedero",
   "Wallet age ≥ N days": "Antigüedad del monedero ≥ N días",
   "Wallet balance": "Saldo del monedero",

@@ -4,6 +4,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { queryOptions, useQuery, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { useAccount } from "wagmi";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { claim, deposit, getLaunch, getMyPositions, withdraw } from "@/lib/launchpad.functions";
@@ -35,6 +36,7 @@ function useNow(ms = 1000) {
 
 function PortalPage() {
   const { text } = useExperience();
+  const { address, isConnected } = useAccount();
   const { id } = Route.useParams();
   const { data: l } = useSuspenseQuery(launchQuery(id));
   const qc = useQueryClient();
@@ -51,6 +53,12 @@ function PortalPage() {
 
   const [form, setForm] = useState({ wallet: "", amount: "" });
   const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    if (isConnected && address) {
+      setForm((current) => current.wallet ? current : { ...current, wallet: address });
+    }
+  }, [address, isConnected]);
 
   if (!l) return <p className="p-10 text-center text-muted-foreground">This campaign doesn't exist.</p>;
   const endsAt = new Date(l.ends_at).getTime();
