@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { startDomTranslation, type Lang } from "@/lib/i18n";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { useAccount, useSwitchChain } from "wagmi";
+import { useAccount, useDisconnect, useSwitchChain } from "wagmi";
 import { fuse } from "viem/chains";
 import { validateWalletNetwork } from "@/lib/wallet";
 
@@ -148,6 +148,7 @@ export function AppHeader() {
   const production = useProductionExperience();
   const account = useAccount();
   const switchChain = useSwitchChain();
+  const disconnect = useDisconnect();
   const network = validateWalletNetwork(account.chainId);
   const showNetworkWarning = account.isConnected && !network.compatible;
   return <header className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-3 px-6 py-6">
@@ -161,6 +162,17 @@ export function AppHeader() {
       <Link to="/incentives" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("Incentives", "🧲 Incentives")}</Link>
       <Link to="/how-it-works" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("How it works", "📖 How it works")}</Link>
       <ConnectButton />
+      {account.isConnected && (
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          disabled={disconnect.isPending}
+          onClick={() => disconnect.disconnect()}
+        >
+          {text("Disconnect", "Disconnect")}
+        </Button>
+      )}
       {account.isConnected && network.status === "compatible" && (
         <span className="rounded border border-success/30 bg-success/10 px-2 py-1 text-xs text-success">
           {text("Fuse network", "Fuse world")}

@@ -21,4 +21,8 @@ test("Rainbow wallet is installed in the root provider and header", () => {
   assert.match(rootSource, /<WagmiProvider config=\{walletConfig\}>/);
   assert.match(rootSource, /<RainbowKitProvider/);
   assert.match(headerSource, /<ConnectButton\s*\/>/);
+  assert.match(headerSource, /useDisconnect/);
+  assert.match(headerSource, /account\.isConnected/);
+  assert.match(headerSource, /disconnect\.disconnect\(\)/);
+  assert.match(headerSource, />\s*\{text\("Disconnect", "Disconnect"\)\s*\}<\/Button>/);
 });
