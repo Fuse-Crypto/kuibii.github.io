@@ -6,6 +6,7 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { startDomTranslation, type Lang } from "@/lib/i18n";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const explanations = {
   name: ["A token's full name, used to identify this distribution.", "Give your magic coins a name, like naming your team."],
@@ -152,6 +153,7 @@ export function AppHeader() {
       <Link to="/games" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("Games", "🎮 Games")}</Link>
       <Link to="/incentives" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("Incentives", "🧲 Incentives")}</Link>
       <Link to="/how-it-works" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("How it works", "📖 How it works")}</Link>
+      <ConnectButton />
       {!production && (
         <>
           <Link to="/launchpad" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("Staking Launchpad", "🐷 Piggy Bank Staking")}</Link>

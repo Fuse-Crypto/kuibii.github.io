@@ -11,9 +11,13 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import "@rainbow-me/rainbowkit/styles.css";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "@/components/ui/sonner";
 import { AppHeader, ExperienceProvider } from "@/components/experience";
+import { WagmiProvider } from "wagmi";
+import { RainbowKitProvider, lightTheme } from "@rainbow-me/rainbowkit";
+import { walletConfig } from "@/lib/wallet";
 
 function NotFoundComponent() {
   return (
@@ -121,11 +125,15 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ExperienceProvider>
-        <AppHeader />
-        <main><Outlet /></main>
-        <Toaster />
-      </ExperienceProvider>
+      <WagmiProvider config={walletConfig}>
+        <RainbowKitProvider theme={lightTheme()} modalSize="compact">
+          <ExperienceProvider>
+            <AppHeader />
+            <main><Outlet /></main>
+            <Toaster />
+          </ExperienceProvider>
+        </RainbowKitProvider>
+      </WagmiProvider>
     </QueryClientProvider>
   );
 }

@@ -12,3 +12,9 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+### Wallet connections
+
+Rainbow Wallet uses WalletConnect for supported mobile and browser connections. Set
+`VITE_WALLETCONNECT_PROJECT_ID` to a project ID from WalletConnect Cloud before
+deploying; a development fallback is included for local builds.
