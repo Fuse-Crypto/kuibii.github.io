@@ -278,7 +278,7 @@ function CreatePage() {
         <p className="text-xs text-muted-foreground">
           {draft.savedAt ? <>{text("Draft saved in this browser", "Saved on this device 💾")} · <button type="button" className="underline hover:text-primary" onClick={resetDraft}>{text("Start over", "Start fresh")}</button></> : null}
         </p>
-        <Button size="lg" disabled={busy || warnings.length > 0} onClick={submit}>{busy ? text("Creating…", "Preparing your treasure…") : text("Create distribution →", "Create Magic Coins ✨")}</Button>
+        <Button size="lg" aria-label="Launch distribution" disabled={busy || warnings.length > 0} onClick={submit}>{busy ? text("Launching…", "Preparing your treasure…") : text("Launch distribution →", "Launch Magic Coins ✨")}</Button>
       </div>
         </>
       )}
