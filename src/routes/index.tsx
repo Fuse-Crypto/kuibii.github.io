@@ -1,4 +1,4 @@
-import { Field, Help, useExperience } from "@/components/experience";
+import { Field, Help, useExperience, useProductionExperience } from "@/components/experience";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useMemo, useState } from "react";
@@ -60,6 +60,7 @@ function Section({ n, title, children }: { n: string; title: string; children: R
 
 function CreatePage() {
   const { text } = useExperience();
+  const production = useProductionExperience();
   const navigate = useNavigate();
   const create = useServerFn(createCampaign);
   const [busy, setBusy] = useState(false);
@@ -166,6 +167,8 @@ function CreatePage() {
         </div>
       </Section>
 
+      {!production && (
+        <>
       <Section n="02" title={text("Conditional Distribution", "Loot Drops / Treat Sharing 🍬")}>
         <Help topic="allocation">{text("Distribution mode", "How will you share?")}</Help>
         <div className="inline-flex max-w-full flex-wrap rounded border border-border p-1">
@@ -277,6 +280,8 @@ function CreatePage() {
         </p>
         <Button size="lg" disabled={busy || warnings.length > 0} onClick={submit}>{busy ? text("Creating…", "Preparing your treasure…") : text("Create distribution →", "Create Magic Coins ✨")}</Button>
       </div>
+        </>
+      )}
     </div>
   );
 }

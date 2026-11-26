@@ -80,6 +80,19 @@ export const useExperience = () => {
   return { kid, setKid, lang, setLang, text: (pro: string, child: string) => kid ? child : pro };
 };
 
+export function isProductionHostname(hostname: string): boolean {
+  const host = hostname.toLowerCase().replace(/\.$/, "");
+  return host === "kuibii.fun" || host === "www.kuibii.fun" || host === "kuibii.github.io";
+}
+
+export function useProductionExperience() {
+  const [production, setProduction] = useState(false);
+  useEffect(() => {
+    setProduction(isProductionHostname(window.location.hostname));
+  }, []);
+  return production;
+}
+
 export function ExperienceProvider({ children }: { children: ReactNode }) {
   const [kid, setKidState] = useState(true);
   const [lang, setLangState] = useState<Lang>("en");
@@ -128,6 +141,7 @@ export function Field({ topic, label, children, className }: { topic: HelpTopic;
 
 export function AppHeader() {
   const { kid, setKid, lang, setLang, text } = useExperience();
+  const production = useProductionExperience();
   return <header className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-3 px-6 py-6">
     <Link to="/" aria-label="Kuibii home" className="flex items-center gap-2.5 font-mono text-sm tracking-widest">
       <img src="/kuibii-logo.png" alt="" className="h-10 w-10 shrink-0 object-contain" />
@@ -135,23 +149,27 @@ export function AppHeader() {
     </Link>
     <nav aria-label="Main navigation" className="flex flex-wrap items-center gap-x-5 gap-y-3 text-sm">
       <Link to="/" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }} activeOptions={{ exact: true }}>{text("Conditional Distribution", "🍬 Treat Sharing")}</Link>
-      <Link to="/launchpad" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("Staking Launchpad", "🐷 Piggy Bank Staking")}</Link>
-      <Link to="/transactions" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("Smart Transactions", "✉️ Magic Sending")}</Link>
-      <Link to="/trade" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("Smart Trade", "🤝 Swap Shop")}</Link>
       <Link to="/games" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("Games", "🎮 Games")}</Link>
       <Link to="/incentives" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("Incentives", "🧲 Incentives")}</Link>
       <Link to="/how-it-works" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("How it works", "📖 How it works")}</Link>
-      <div className="flex items-center gap-2 border-l border-border pl-4">
-        <Label htmlFor="kid-mode" className={kid ? "text-primary" : "text-muted-foreground"}>Kid Mode</Label>
-        <Switch id="kid-mode" aria-label="Kid Mode / Pro Mode" checked={kid} onCheckedChange={setKid} />
-        <Label htmlFor="kid-mode" className={kid ? "text-muted-foreground" : "text-primary"}>Pro Mode</Label>
-      </div>
-      <div className="flex items-center rounded border border-border p-0.5 font-mono text-xs" role="group" aria-label="Language" data-no-translate>
-        {(["en", "es"] as const).map((l) => (
-          <Button key={l} type="button" variant="ghost" size="sm" aria-pressed={lang === l} onClick={() => setLang(l)}
-            className={`h-7 px-2 ${lang === l ? "bg-primary text-primary-foreground" : "text-muted-foreground"}`}>{l.toUpperCase()}</Button>
-        ))}
-      </div>
+      {!production && (
+        <>
+          <Link to="/launchpad" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("Staking Launchpad", "🐷 Piggy Bank Staking")}</Link>
+          <Link to="/transactions" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("Smart Transactions", "✉️ Magic Sending")}</Link>
+          <Link to="/trade" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("Smart Trade", "🤝 Swap Shop")}</Link>
+          <div className="flex items-center gap-2 border-l border-border pl-4">
+            <Label htmlFor="kid-mode" className={kid ? "text-primary" : "text-muted-foreground"}>Kid Mode</Label>
+            <Switch id="kid-mode" aria-label="Kid Mode / Pro Mode" checked={kid} onCheckedChange={setKid} />
+            <Label htmlFor="kid-mode" className={kid ? "text-muted-foreground" : "text-primary"}>Pro Mode</Label>
+          </div>
+          <div className="flex items-center rounded border border-border p-0.5 font-mono text-xs" role="group" aria-label="Language" data-no-translate>
+            {(["en", "es"] as const).map((l) => (
+              <Button key={l} type="button" variant="ghost" size="sm" aria-pressed={lang === l} onClick={() => setLang(l)}
+                className={`h-7 px-2 ${lang === l ? "bg-primary text-primary-foreground" : "text-muted-foreground"}`}>{l.toUpperCase()}</Button>
+            ))}
+          </div>
+        </>
+      )}
     </nav>
   </header>;
 }
