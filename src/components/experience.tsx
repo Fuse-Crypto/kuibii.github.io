@@ -7,6 +7,9 @@ import { Label } from "@/components/ui/label";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { startDomTranslation, type Lang } from "@/lib/i18n";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { useAccount, useSwitchChain } from "wagmi";
+import { fuse } from "viem/chains";
+import { validateWalletNetwork } from "@/lib/wallet";
 
 const explanations = {
   name: ["A token's full name, used to identify this distribution.", "Give your magic coins a name, like naming your team."],
@@ -143,6 +146,10 @@ export function Field({ topic, label, children, className }: { topic: HelpTopic;
 export function AppHeader() {
   const { kid, setKid, lang, setLang, text } = useExperience();
   const production = useProductionExperience();
+  const account = useAccount();
+  const switchChain = useSwitchChain();
+  const network = validateWalletNetwork(account.chainId);
+  const showNetworkWarning = account.isConnected && !network.compatible;
   return <header className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-3 px-6 py-6">
     <Link to="/" aria-label="Kuibii home" className="flex items-center gap-2.5 font-mono text-sm tracking-widest">
       <img src="/kuibii-logo.png" alt="" className="h-10 w-10 shrink-0 object-contain" />
@@ -154,6 +161,26 @@ export function AppHeader() {
       <Link to="/incentives" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("Incentives", "🧲 Incentives")}</Link>
       <Link to="/how-it-works" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("How it works", "📖 How it works")}</Link>
       <ConnectButton />
+      {account.isConnected && network.status === "compatible" && (
+        <span className="rounded border border-success/30 bg-success/10 px-2 py-1 text-xs text-success">
+          {text("Fuse network", "Fuse world")}
+        </span>
+      )}
+      {showNetworkWarning && (
+        <span className="flex items-center gap-2 rounded border border-destructive/30 bg-destructive/10 px-2 py-1 text-xs text-destructive">
+          {text("Unsupported network", "Wrong coin world")}
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            className="h-7 px-2 text-destructive hover:text-destructive"
+            disabled={switchChain.isPending}
+            onClick={() => switchChain.switchChain({ chainId: fuse.id })}
+          >
+            {text("Switch to Fuse", "Switch to Fuse")}
+          </Button>
+        </span>
+      )}
       {!production && (
         <>
           <Link to="/launchpad" className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{text("Staking Launchpad", "🐷 Piggy Bank Staking")}</Link>
