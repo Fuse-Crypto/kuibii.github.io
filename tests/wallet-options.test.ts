@@ -4,6 +4,7 @@ import {
   getWalletErrorKind,
   getWalletErrorMessage,
   isSupportedChainId,
+  shouldReconnectWallet,
   validateWalletNetwork,
   WALLET_OPTIONS,
 } from "../src/lib/wallet";
@@ -25,6 +26,12 @@ test("Wallet network validation reports compatible, unsupported, and unknown sta
   expect(validateWalletNetwork(fuse.id)).toEqual({ compatible: true, status: "compatible" });
   expect(validateWalletNetwork(1)).toEqual({ compatible: false, status: "unsupported" });
   expect(validateWalletNetwork(undefined)).toEqual({ compatible: false, status: "unknown" });
+});
+
+test("Disconnected wallets reconnect only when restoration is not already in progress", () => {
+  expect(shouldReconnectWallet({ isConnected: false, isReconnecting: false })).toBe(true);
+  expect(shouldReconnectWallet({ isConnected: false, isReconnecting: true })).toBe(false);
+  expect(shouldReconnectWallet({ isConnected: true, isReconnecting: false })).toBe(false);
 });
 
 test("Wallet errors are classified and turned into actionable messages", () => {

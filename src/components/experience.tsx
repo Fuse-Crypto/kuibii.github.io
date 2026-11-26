@@ -7,10 +7,10 @@ import { Label } from "@/components/ui/label";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { startDomTranslation, type Lang } from "@/lib/i18n";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { useAccount, useConnect, useDisconnect, useSwitchChain } from "wagmi";
+import { useAccount, useConnect, useDisconnect, useReconnect, useSwitchChain } from "wagmi";
 import { fuse } from "viem/chains";
 import { toast } from "sonner";
-import { getWalletErrorMessage, validateWalletNetwork } from "@/lib/wallet";
+import { getWalletErrorMessage, shouldReconnectWallet, validateWalletNetwork } from "@/lib/wallet";
 
 const explanations = {
   name: ["A token's full name, used to identify this distribution.", "Give your magic coins a name, like naming your team."],
@@ -151,8 +151,14 @@ export function AppHeader() {
   const connect = useConnect();
   const switchChain = useSwitchChain();
   const disconnect = useDisconnect();
+  const reconnect = useReconnect();
   const network = validateWalletNetwork(account.chainId);
   const showNetworkWarning = account.isConnected && !network.compatible;
+  useEffect(() => {
+    if (shouldReconnectWallet(account)) {
+      reconnect.reconnect();
+    }
+  }, [account.isConnected, account.isReconnecting, reconnect.reconnect]);
   useEffect(() => {
     if (connect.error) {
       toast.error(getWalletErrorMessage(connect.error, "connect"));

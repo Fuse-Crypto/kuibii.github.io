@@ -23,6 +23,13 @@ export function validateWalletNetwork(chainId: number | undefined) {
   return { compatible: false, status: "unsupported" as const };
 }
 
+export function shouldReconnectWallet(account: {
+  isConnected: boolean;
+  isReconnecting: boolean;
+}) {
+  return !account.isConnected && !account.isReconnecting;
+}
+
 export type WalletErrorKind =
   | "rejected"
   | "network_mismatch"
