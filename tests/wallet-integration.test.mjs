@@ -25,4 +25,7 @@ test("Rainbow wallet is installed in the root provider and header", () => {
   assert.match(headerSource, /account\.isConnected/);
   assert.match(headerSource, /disconnect\.disconnect\(\)/);
   assert.match(headerSource, />\s*\{text\("Disconnect", "Disconnect"\)\s*\}<\/Button>/);
+  assert.match(headerSource, /useConnect/);
+  assert.match(headerSource, /getWalletErrorMessage/);
+  assert.match(headerSource, /Switched to Fuse/);
 });

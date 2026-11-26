@@ -1,4 +1,11 @@
 {
+  "Wallet request rejected. Nothing changed.": "Solicitud rechazada por la cartera. No cambió nada.",
+  "Your wallet is on a different network. Switch to Fuse and try again.": "Tu cartera está en una red diferente. Cambia a Fuse y vuelve a intentarlo.",
+  "Wallet could not connect. Check that the wallet is installed, unlocked, and available.": "No se pudo conectar la cartera. Comprueba que esté instalada, desbloqueada y disponible.",
+  "Could not switch networks. Check your wallet and try again.": "No se pudo cambiar de red. Comprueba tu cartera y vuelve a intentarlo.",
+  "Could not disconnect the wallet. Try again.": "No se pudo desconectar la cartera. Inténtalo de nuevo.",
+  "Could not connect to the wallet. Try again.": "No se pudo conectar a la cartera. Inténtalo de nuevo.",
+  "Switched to Fuse.": "Cambiado a Fuse.",
   " · root": " · raíz",
   " · timers": " · temporizadores",
   "— should add up to 100%": "— debe sumar el 100 %",

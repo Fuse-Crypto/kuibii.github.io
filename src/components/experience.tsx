@@ -7,9 +7,10 @@ import { Label } from "@/components/ui/label";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { startDomTranslation, type Lang } from "@/lib/i18n";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { useAccount, useDisconnect, useSwitchChain } from "wagmi";
+import { useAccount, useConnect, useDisconnect, useSwitchChain } from "wagmi";
 import { fuse } from "viem/chains";
-import { validateWalletNetwork } from "@/lib/wallet";
+import { toast } from "sonner";
+import { getWalletErrorMessage, validateWalletNetwork } from "@/lib/wallet";
 
 const explanations = {
   name: ["A token's full name, used to identify this distribution.", "Give your magic coins a name, like naming your team."],
@@ -147,10 +148,26 @@ export function AppHeader() {
   const { kid, setKid, lang, setLang, text } = useExperience();
   const production = useProductionExperience();
   const account = useAccount();
+  const connect = useConnect();
   const switchChain = useSwitchChain();
   const disconnect = useDisconnect();
   const network = validateWalletNetwork(account.chainId);
   const showNetworkWarning = account.isConnected && !network.compatible;
+  useEffect(() => {
+    if (connect.error) {
+      toast.error(getWalletErrorMessage(connect.error, "connect"));
+    }
+  }, [connect.error]);
+  useEffect(() => {
+    if (disconnect.error) {
+      toast.error(getWalletErrorMessage(disconnect.error, "disconnect"));
+    }
+  }, [disconnect.error]);
+  useEffect(() => {
+    if (switchChain.error) {
+      toast.error(getWalletErrorMessage(switchChain.error, "switch"));
+    }
+  }, [switchChain.error]);
   return <header className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-3 px-6 py-6">
     <Link to="/" aria-label="Kuibii home" className="flex items-center gap-2.5 font-mono text-sm tracking-widest">
       <img src="/kuibii-logo.png" alt="" className="h-10 w-10 shrink-0 object-contain" />
@@ -187,7 +204,12 @@ export function AppHeader() {
             size="sm"
             className="h-7 px-2 text-destructive hover:text-destructive"
             disabled={switchChain.isPending}
-            onClick={() => switchChain.switchChain({ chainId: fuse.id })}
+            onClick={() => switchChain.switchChain(
+              { chainId: fuse.id },
+              {
+                onSuccess: () => toast.success("Switched to Fuse."),
+              },
+            )}
           >
             {text("Switch to Fuse", "Switch to Fuse")}
           </Button>
