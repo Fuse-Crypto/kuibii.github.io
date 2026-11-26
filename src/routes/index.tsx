@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { createCampaign } from "@/lib/campaigns.functions";
-import { CONDITIONS, USE_CASES, condDef, type Condition, type UseCase } from "@/lib/conditions";
+import { CONDITIONS, USE_CASES, condDef, type Condition } from "@/lib/conditions";
 import { CHAINS, vestingSchedule, type Tier, type Vesting } from "@/lib/distribution";
 import { TokenUtilityEditor } from "@/components/token-utility-editor";
 import { emptyConfig, type TokenConfig } from "@/lib/token-utility";
@@ -33,7 +33,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Section({ n, title, children }: { n: string; title: string; children: React.ReactNode }) {
-  const [open, setOpen] = useState(n === "01");
+  const [open, setOpen] = useState(n === "00");
   const triggerId = `creation-heading-${n}`;
   const panelId = `creation-panel-${n}`;
   return (
@@ -89,14 +89,6 @@ function CreatePage() {
     setVesting({ enabled: false, tge_percent: 20, cliff_months: 3, duration_months: 12 });
     setConds([]); setUtil(emptyConfig);
   }
-  const { kid } = useExperience();
-  function applyCase(u: UseCase) {
-    setF((x) => ({ ...x, distribution_mode: u.mode, fixed_amount: u.fixed_amount || x.fixed_amount }));
-    if (u.tiers.length) setTiers(u.tiers);
-    setVesting(u.vesting);
-    setConds(u.conditions.map((c) => ({ ...c, params: { ...c.params } })));
-    toast.success(`${kid ? u.kid : u.pro} template applied`);
-  }
   const groups = [...new Set(CONDITIONS.map((c) => c.group))];
 
   async function submit() {
@@ -128,20 +120,7 @@ function CreatePage() {
         </p>
       </div>
 
-      <Section n="00" title={text("Use cases", "Party ideas 🎈")}>
-        <Help topic="useCases">{text("Start from a template", "Pick a recipe")}</Help>
-        <div className="grid gap-2 sm:grid-cols-2">
-          {USE_CASES.map((u) => (
-            <button type="button" key={u.id} onClick={() => applyCase(u)} className="rounded border border-border bg-card p-3 text-left transition hover:border-primary">
-              <div className="font-bold">{text(u.pro, u.kid)}</div>
-              <div className="mt-1 text-xs text-muted-foreground">{u.blurb}</div>
-              <div className="mt-2 font-mono text-[10px] text-primary">{u.conditions.length} {text("conditions", "rules")}{u.vesting.enabled ? text(" · vesting", " · timers") : ""}</div>
-            </button>
-          ))}
-        </div>
-      </Section>
-
-      <Section n="01" title={text("Token", "Magic Coins 🪙")}>
+      <Section n="00" title={text("Token creation", "Magic Coins 🪙")}>
         <div className="grid gap-4 sm:grid-cols-2">
           <Field topic="name" label={text("Name", "Coin name ✨")}>{(fieldId) => <Input id={fieldId} value={f.name} maxLength={60} placeholder="Harbor Credits" onChange={(e) => setF({ ...f, name: e.target.value })} />}</Field>
           <Field topic="symbol" label={text("Symbol", "Coin nickname")}>{(fieldId) => <Input id={fieldId} value={f.symbol} maxLength={11} placeholder="HBR" className="font-mono uppercase" onChange={(e) => setF({ ...f, symbol: e.target.value.replace(/[^a-z0-9]/gi, "") })} />}</Field>
@@ -164,6 +143,22 @@ function CreatePage() {
             })}
           </div>
           <p className="mt-2 text-xs text-muted-foreground">{text("Only Fuse is usable for now — the other networks are coming soon.", "Only Fuse works for now — the other worlds are coming soon.")}</p>
+        </div>
+      </Section>
+
+      <Section n="01" title={text("Use cases", "Party ideas 🎈")}>
+        <div className="flex items-center justify-between gap-3">
+          <Help topic="useCases">{text("Start from a template", "Pick a recipe")}</Help>
+          <span className="rounded border border-primary/30 bg-primary/10 px-2 py-1 font-mono text-xs text-primary">{text("Coming soon", "Coming soon")}</span>
+        </div>
+        <div className="grid gap-2 sm:grid-cols-2">
+          {USE_CASES.map((u) => (
+            <button type="button" key={u.id} disabled className="cursor-not-allowed rounded border border-border bg-card p-3 text-left opacity-60">
+              <div className="font-bold">{text(u.pro, u.kid)}</div>
+              <div className="mt-1 text-xs text-muted-foreground">{u.blurb}</div>
+              <div className="mt-2 font-mono text-[10px] text-primary">{u.conditions.length} {text("conditions", "rules")}{u.vesting.enabled ? text(" · vesting", " · timers") : ""}</div>
+            </button>
+          ))}
         </div>
       </Section>
 
